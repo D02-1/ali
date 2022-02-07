@@ -1,0 +1,23 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "lowdb": "^1.0.0"
+  },
+  "nodemonConfig": {
+    "ignore": ["db/*", "db.json"]
+},
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

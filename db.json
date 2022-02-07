@@ -1,0 +1,18 @@
+{
+  "records": [
+    {
+      "title": "a",
+      "artist": "b",
+      "year": "7892",
+      "image": "d",
+      "price": "12"
+    },
+    {
+      "title": "a",
+      "artist": "b",
+      "year": "7892",
+      "image": "d",
+      "price": "12"
+    }
+  ]
+}

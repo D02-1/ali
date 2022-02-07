@@ -55,7 +55,7 @@ app.post('/records', (req, res) =>
     // wir holen uns die "collection records" aus der Datenbank und fügen den neuen hinzu
     db.get('records').push(newRecord).write();
 
-    // sendet status(201) das heißt eine neue Resource wurde erfolgreich angelegt
+    // Der Server sendet als Antwort einen status(201) das heißt eine neue Resource wurde erfolgreich angelegt
     res.status(201).json(newRecord)
     
 });

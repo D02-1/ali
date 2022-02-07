@@ -36,7 +36,7 @@ app.get('/records', (req, res) =>
     // wir lesen aus unserer Datenbank die "Collection records" aus
     const records = db.get('records');
     // wir geben dem Frontend (Postman) einen Status 200 (Anfrage konnte erfolgreich bearbeitet werden) zurück und die angefragte Info aus der Datenbank. => mit diesen Daten würden wir dann im Frontend weiter arbeiten.
-    res.status(200).send(records);
+    res.status(200).json(records);
 });
 
 
@@ -58,7 +58,7 @@ app.post('/records', (req, res) =>
     db.get('records').push(newRecord).write();
 
     // Der Server sendet als Antwort einen status(201) das heißt eine neue Resource wurde erfolgreich angelegt
-    res.status(201).json(newRecord)
+    res.status(201).send("Daten erfolgreich hinzugfügt")
     
 });
 

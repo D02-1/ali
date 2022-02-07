@@ -11,7 +11,7 @@ const low = require('lowdb');
 const app = express();
 // der Port für unseren Server
 const port = 5000
-// wir sagen express hier, den bodyParser aus Zeile 4 zu nutzen 
+// wir sagen unserem server von express hier, den bodyParser aus Zeile 4 zu nutzen 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -20,7 +20,7 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 // wir legen eine collection, mit dem Namen records an. (collections sind Ansammlungen von Daten, zu einem bestimmten Thema)
-// wir könnten zum Beipiel eine weitere collection "customers" (englisch für Kunden) haben (wo all unsere Kunden des Recordshops gespeichert sind)
+// wir könnten zum Beipiel eine weitere collection "customers" (englisch Kunden) haben (wo all unsere Kunden des Recordshops gespeichert sind)
 db.defaults({ records: [] }).write();
 // ***********************************************************************************
 
@@ -30,6 +30,7 @@ db.defaults({ records: [] }).write();
 // könnte zum Beispiel der User, wenn unser Backend mit dem Frontend verbunden wäre 
 // alle angebotenen Artikel (Records) ansehen wollen
 
+//der Server bekommt eine get Anfrage (req) auf dem Endpunkt /records
 app.get('/records', (req, res) =>
 {
     // wir lesen aus unserer Datenbank die "Collection records" aus
@@ -48,6 +49,7 @@ app.get('/records', (req, res) =>
 // update - PUT
 // delete - DELETE
 
+//der Server bekommt eine post Anfrage (req)
 app.post('/records', (req, res) =>
 {
     //die über Postman (Frontendersatz) gesendeten Daten erhalten wir hier im req.body

@@ -1,15 +1,17 @@
-
+// ***********************************************************************************
+// express aus den node-modulen in dieser Datei nutzen
 const express = require('express');
 // body-parserModul analysiert die JSON-, Puffer-, Zeichenfolgen- und URL-codierten Daten, die auf HTTP POSTAnfrage übermittelt werden
 const bodyParser = require('body-parser');
+//  low db aus den node-modulen in dieser Datei nutzen
 const low = require('lowdb');
 
 
 // in der Variable app haben wir jetzt unseren server von express initialisiert
 const app = express();
-
+// der Port für unseren Server
 const port = 5000
-// express bitte nutze unseren bodyParser
+//wir sagen express hier, den bodyParser aus Zeile 4 zu nutzen
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -17,8 +19,9 @@ app.use(bodyParser.json());
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
+// wir legen eine collection, mit dem Namen records an. (collections sind Ansammlungen von Daten, zu einem bestimmten Thema)
 db.defaults({ records: [] }).write();
-
+// ***********************************************************************************
 
 // wir sind ein Recordshop
 // und auf dem Endpunkt (/records) für die Records zum Beispiel: http//:bestshopintown/records 
@@ -27,8 +30,9 @@ db.defaults({ records: [] }).write();
 
 app.get('/records', (req, res) =>
 {
+    // wir lesen aus unserer Datenbank die "Collection records" aus
     const records = db.get('records');
-
+    // wir geben dem Frontend (Postman) einen Status 200 (Anfrage konnte erfolgreich bearbeitet werden) zurück und die angefragte Info.
     res.status(200).send(records);
 });
 
@@ -51,5 +55,6 @@ app.post('/records', (req, res) =>
     res.status(201).json(newRecord)
     
 });
+
 
 app.listen(port, () => console.log(`Server läuft auf port ${ port}`));
